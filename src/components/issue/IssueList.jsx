@@ -7,8 +7,8 @@ const IssueList = () => {
 
   const fetchIssues = async () => {
     try {
-      const fetchedIssues = await getIssues();
-      setIssues(fetchedIssues);
+      const issueDataList = await getIssues();
+      setIssues(issueDataList);
     } catch (error) {
       alert(error.message);
     }
