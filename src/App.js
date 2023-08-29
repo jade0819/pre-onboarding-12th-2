@@ -12,12 +12,7 @@ const App = () => {
 
   fetchIssues();
 
-  return (
-    <div>
-      기본 세팅 완료
-      <h1>husky pre-commit, pre-push 설정 적용 완료</h1>
-    </div>
-  );
+  return <div className="text-red-500">기본 세팅 완료</div>;
 };
 
 export default App;
