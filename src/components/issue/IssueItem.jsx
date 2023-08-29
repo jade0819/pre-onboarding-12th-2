@@ -10,14 +10,14 @@ const IssueItem = ({ issue, index }) => {
   const wantedUrl = 'https://www.wanted.co.kr/jobsfeed';
 
   const handleClickTitle = () => {
-    navigate(`/issues/${issue.number}`);
+    const id = issue.number;
+    navigate(`/issues/${id}`, { state: { id } });
   };
 
   return (
     <li className="list-none">
       {fifthIndexFlag && (
         <div
-          to=""
           onClick={() => window.open(wantedUrl)}
           className="h-[97px] flex justify-center items-center border-b border-b-gray-300 cursor-pointer"
         >

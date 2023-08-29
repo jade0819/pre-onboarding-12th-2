@@ -1,18 +1,11 @@
-import { Octokit } from 'octokit';
+import api from './axios';
 
-// TODO: open 상태의 이슈 가져오기, 코멘트 순으로 정렬해서 가져오기
-export const fetchIssues = async () => {
-  const octokit = new Octokit({
-    auth: process.env.REACT_APP_GITHUB_TOKEN,
-  });
+export const getIssues = async () => {
+  const response = await api.get('/issues?per_page=10&state=open&sort=comments&page=1');
+  return response.data;
+};
 
-  const response = await octokit.request('GET /repos/{owner}/{repo}/issues', {
-    owner: 'facebook',
-    repo: 'react',
-    headers: {
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
-  });
-
+export const getIssueItem = async id => {
+  const response = await api.get(`/issues/${id}`);
   return response.data;
 };

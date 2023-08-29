@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
-import { fetchIssues as getIssues } from '../../api/api';
+import { getIssueItem } from '../../api/api';
 import Profile from '../ui/Profile';
 import Card from '../ui/Card';
 import CardItem from '../ui/CardItem';
 import IssueDetailContent from './IssueDetailContent';
+import { useLocation } from 'react-router';
 
 const IssueDetail = () => {
   const [issue, setIssue] = useState();
+  const {
+    state: { id },
+  } = useLocation();
 
   // TODO: 이슈 상세페이지 api로 변경해야 됨
   const fetchIssues = async () => {
     try {
-      const issueDataList = await getIssues();
-      console.log(issueDataList[4]);
-      setIssue(issueDataList[4]);
+      const issue = await getIssueItem(id);
+      setIssue(issue);
     } catch (error) {
       alert(error.message);
     }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchIssues as getIssues } from '../../api/api';
+import { getIssues } from '../../api/api';
 import IssueItem from './IssueItem';
 
 const IssueList = () => {
