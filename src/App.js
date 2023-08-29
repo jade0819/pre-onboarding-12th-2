@@ -1,18 +1,18 @@
-import { fetchIssues as getIssues } from './api/api';
+import { BrowserRouter } from 'react-router-dom';
+import { Suspense } from 'react';
+import AppRoutes from './AppRoutes';
+import PageLayout from './layout/PageLayout';
 
 const App = () => {
-  const fetchIssues = async () => {
-    try {
-      const fetchedIssues = await getIssues();
-      console.log(fetchedIssues);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
-  fetchIssues();
-
-  return <div className="text-red-500">기본 세팅 완료</div>;
+  return (
+    <BrowserRouter>
+      <PageLayout>
+        <Suspense fallback={<div className="text-3xl font-bold"> Loading... </div>}>
+          <AppRoutes />
+        </Suspense>
+      </PageLayout>
+    </BrowserRouter>
+  );
 };
 
 export default App;
