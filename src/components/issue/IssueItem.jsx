@@ -19,7 +19,7 @@ const IssueItem = ({ issue, index }) => {
         <div
           to=""
           onClick={() => window.open(wantedUrl)}
-          className="h-[97px] flex justify-center items-center cursor-pointer"
+          className="h-[97px] flex justify-center items-center border-b border-b-gray-300 cursor-pointer"
         >
           <img src={adImageUrl} alt="AD wanted image" />
         </div>
