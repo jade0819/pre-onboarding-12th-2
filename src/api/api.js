@@ -1,5 +1,6 @@
-import { Octokit, RequestError } from 'octokit';
+import { Octokit } from 'octokit';
 
+// TODO: open 상태의 이슈 가져오기, 코멘트 순으로 정렬해서 가져오기
 export const fetchIssues = async () => {
   const octokit = new Octokit({
     auth: process.env.REACT_APP_GITHUB_TOKEN,
@@ -15,23 +16,3 @@ export const fetchIssues = async () => {
 
   return response.data;
 };
-
-////////////////////////////
-
-// const ownerRepo = 'facebook/react';
-
-// export const requestReposIssues = () => {
-//   fetch(`https://api.github.com/repos/${ownerRepo}/issues`, {
-//     headers: {
-//       Accept: 'application/vnd.github.v3+json',
-//       Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-//     },
-//   })
-//     .then(response => response.json())
-//     .then(data => {
-//       console.log(data);
-//       // formatResults(data);
-//       return data;
-//     })
-//     .catch(error => console.error(error));
-// };

@@ -20,9 +20,8 @@ const IssueList = () => {
 
   return (
     <>
-      {issues?.map(issue => (
-        <IssueItem key={issue.id} issue={issue} />
-      ))}
+      {issues.length > 0 &&
+        issues?.map((issue, index) => <IssueItem key={issue.id} issue={issue} index={index} />)}
     </>
   );
 };
