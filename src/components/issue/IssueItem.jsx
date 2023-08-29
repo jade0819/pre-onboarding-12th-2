@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import Card from '../ui/Card';
-import CardItem from './CardItem';
+import CardItem from '../ui/CardItem';
 
 const IssueItem = ({ issue }) => {
   const navigate = useNavigate();

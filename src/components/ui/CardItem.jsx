@@ -1,4 +1,4 @@
-import Text from '../ui/Text';
+import Text from './Text';
 
 const CardItem = ({ issue, handleClickTitle }) => {
   const { number, title, user, created_at, comments } = issue;
