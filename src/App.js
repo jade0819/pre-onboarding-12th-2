@@ -7,7 +7,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <PageLayout>
-        <Suspense fallback={<div className="text-3xl font-bold"> Loading... </div>}>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center text-3xl font-bold"> Loading... </div>
+          }
+        >
           <AppRoutes />
         </Suspense>
       </PageLayout>
