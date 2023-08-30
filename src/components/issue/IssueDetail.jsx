@@ -12,7 +12,6 @@ const IssueDetail = () => {
     state: { id },
   } = useLocation();
 
-  // TODO: 이슈 상세페이지 api로 변경해야 됨
   const fetchIssues = async () => {
     try {
       const issue = await getIssueItem(id);

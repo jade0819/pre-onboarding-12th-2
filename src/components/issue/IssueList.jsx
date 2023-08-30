@@ -1,28 +1,35 @@
-import { useEffect, useState } from 'react';
-import { getIssues } from '../../api/api';
+import { useEffect } from 'react';
+import useOnScreen from '../../hook/useOnScreen';
 import IssueItem from './IssueItem';
 
-const IssueList = () => {
-  const [issues, setIssues] = useState([]);
-
-  const fetchIssues = async () => {
-    try {
-      const issueDataList = await getIssues();
-      setIssues(issueDataList);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+const IssueList = ({ hasMore, loading, loadMore, issues }) => {
+  const { measureRef, isIntersecting, observer } = useOnScreen();
 
   useEffect(() => {
-    fetchIssues();
-  }, []);
+    if (isIntersecting && hasMore) {
+      loadMore();
+      observer.disconnect();
+    }
+  }, [isIntersecting, hasMore, loadMore]);
 
   return (
-    <>
+    <ul>
       {issues.length > 0 &&
-        issues?.map((issue, index) => <IssueItem key={issue.id} issue={issue} index={index} />)}
-    </>
+        issues?.map((issue, index) => {
+          if (index === issues.length - 1) {
+            return (
+              <IssueItem
+                key={issue.id + index}
+                mesureRef={measureRef}
+                issue={issue}
+                index={index}
+              />
+            );
+          }
+          return <IssueItem key={issue.id + index} issue={issue} index={index} />;
+        })}
+      {loading && <li>Loading...</li>}
+    </ul>
   );
 };
 

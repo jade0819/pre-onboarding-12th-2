@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import Card from '../ui/Card';
 import CardItem from '../ui/CardItem';
 
-const IssueItem = ({ issue, index }) => {
+const IssueItem = ({ mesureRef, issue, index }) => {
   const navigate = useNavigate();
   const fifthIndexFlag = index % 4 === 0 && index !== 0 ? true : false;
   const adImageUrl =
@@ -15,7 +15,7 @@ const IssueItem = ({ issue, index }) => {
   };
 
   return (
-    <li className="list-none">
+    <li className="list-none" ref={mesureRef}>
       {fifthIndexFlag && (
         <div
           onClick={() => window.open(wantedUrl)}

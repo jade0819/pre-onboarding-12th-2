@@ -1,0 +1,39 @@
+import { useCallback, useEffect, useState } from 'react';
+import IssueList from './IssueList';
+import { getIssues } from '../../api/api';
+
+export default function IssueContainer() {
+  const [issues, setIssues] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const fetchIssues = async () => {
+    try {
+      const newData = await getIssues(page);
+      setIssues(prevData => [...prevData, ...newData]);
+      setHasMore(newData.length > 0);
+    } catch (error) {
+      alert(error.message);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchIssues();
+  }, [page]);
+
+  const loadMore = useCallback(() => {
+    setPage(page => page + 1);
+    setLoading(true);
+  }, []);
+
+  return (
+    <>
+      {issues.length > 0 && (
+        <IssueList issues={issues} hasMore={hasMore} loadMore={loadMore} loading={loading} />
+      )}
+    </>
+  );
+}
