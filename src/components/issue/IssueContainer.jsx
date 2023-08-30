@@ -6,7 +6,7 @@ export default function IssueContainer() {
   const [issues, setIssues] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchIssues = async () => {
     try {
@@ -17,7 +17,7 @@ export default function IssueContainer() {
       alert(error.message);
     }
 
-    setLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -26,13 +26,13 @@ export default function IssueContainer() {
 
   const loadMore = useCallback(() => {
     setPage(page => page + 1);
-    setLoading(true);
+    setIsLoading(true);
   }, []);
 
   return (
     <>
       {issues.length > 0 && (
-        <IssueList issues={issues} hasMore={hasMore} loadMore={loadMore} loading={loading} />
+        <IssueList issues={issues} hasMore={hasMore} loadMore={loadMore} isLoading={isLoading} />
       )}
     </>
   );
