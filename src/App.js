@@ -1,9 +1,21 @@
+import { BrowserRouter } from 'react-router-dom';
+import { Suspense } from 'react';
+import AppRoutes from './AppRoutes';
+import PageLayout from './layout/PageLayout';
+
 const App = () => {
   return (
-    <div>
-      기본 세팅 완료
-      <h1>husky pre-commit, pre-push 설정 적용 완료</h1>
-    </div>
+    <BrowserRouter>
+      <PageLayout>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center text-3xl font-bold"> Loading... </div>
+          }
+        >
+          <AppRoutes />
+        </Suspense>
+      </PageLayout>
+    </BrowserRouter>
   );
 };
 
