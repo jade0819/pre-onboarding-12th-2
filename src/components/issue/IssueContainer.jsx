@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import IssueList from './IssueList';
 import { getIssues } from '../../api/api';
+import Error from '../ui/Error';
 
 export default function IssueContainer() {
   const [issues, setIssues] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const fetchIssues = async () => {
     try {
@@ -14,7 +16,8 @@ export default function IssueContainer() {
       setIssues(prevData => [...prevData, ...newData]);
       setHasMore(newData.length > 0);
     } catch (error) {
-      alert(error.message);
+      // setError(error.message);
+      setError(error);
     }
 
     setIsLoading(false);
@@ -31,7 +34,8 @@ export default function IssueContainer() {
 
   return (
     <>
-      {issues.length > 0 && (
+      {error && <Error error={error} />}
+      {!error && issues.length > 0 && (
         <IssueList issues={issues} hasMore={hasMore} loadMore={loadMore} isLoading={isLoading} />
       )}
     </>
