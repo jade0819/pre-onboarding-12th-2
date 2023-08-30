@@ -34,7 +34,7 @@ export default function IssueContainer() {
 
   return (
     <>
-      {error && <Error error={error} />}
+      {error && <Error error={error} type={'list'} />}
       {!error && issues.length > 0 && (
         <IssueList issues={issues} hasMore={hasMore} loadMore={loadMore} isLoading={isLoading} />
       )}
