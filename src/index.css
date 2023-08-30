@@ -38,3 +38,14 @@ ol,
 ul {
   @apply block my-4 pl-10 list-decimal;
 }
+
+.spin__animation {
+  animation: rotate_image 1.5s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image {
+  100% {
+    transform: rotate(360deg);
+  }
+}

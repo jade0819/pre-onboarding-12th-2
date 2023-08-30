@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import useOnScreen from '../../hook/useOnScreen';
+import useOnScreen from '../../hooks/useOnScreen';
 import IssueItem from './IssueItem';
+import LoadingItem from '../ui/LoadingItem';
 
 const IssueList = ({ hasMore, isLoading, loadMore, issues }) => {
   const { measureRef, isIntersecting, observer } = useOnScreen();
@@ -28,7 +29,7 @@ const IssueList = ({ hasMore, isLoading, loadMore, issues }) => {
           }
           return <IssueItem key={issue.id + index} issue={issue} index={index} />;
         })}
-      {isLoading && <li>Loading...</li>}
+      {isLoading && <LoadingItem />}
     </ul>
   );
 };
