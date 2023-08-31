@@ -18,6 +18,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* 
+h1,
+h2 {
+  @apply mt-6 mb-4 pb-2 border-b border-b-gray-300;
+}
+
 h1 {
   @apply text-3xl font-extrabold;
 }
@@ -27,7 +33,7 @@ h2 {
 }
 
 h3 {
-  @apply text-xl font-semibold;
+  @apply text-xl font-semibold mt-6 mb-4;
 }
 
 h4 {
@@ -35,25 +41,38 @@ h4 {
 }
 
 p {
-  @apply my-4;
+  @apply my-4 whitespace-pre-wrap;
 }
 
-ol,
-ul {
-  @apply block my-4 pl-5 list-decimal;
+p>code {
+  @apply inline-block bg-[#EFF1F3] px-1 rounded-lg whitespace-normal;
 }
 
-li {
+p>a {
+  @apply underline text-blue-500
 }
 
 pre,
 code {
-  @apply inline-block m-0;
+  @apply block m-0;
 }
 
-pre > code {
-  @apply bg-[#F7F6F3] p-4 rounded-sm;
+pre>code {
+  @apply bg-[#F7F6F3] p-4 rounded-sm whitespace-pre-wrap;
 }
+
+ol,
+ul {
+  @apply block my-4 pl-5;
+}
+
+ol {
+  @apply list-decimal
+}
+
+ul {
+  @apply list-disc
+} */
 
 .spin__animation {
   animation: rotate_image 1.5s linear infinite;
