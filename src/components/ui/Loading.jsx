@@ -1,7 +1,7 @@
 const Loading = () => {
   return (
-    <div className="h-screen flex justify-center items-center text-2xl text-gray-700">
-      로딩중 ...
+    <div className="h-screen flex justify-center items-start pt-[190px] ">
+      <img src={process.env.PUBLIC_URL + '/images/loading-spinner-200px.gif'} />
     </div>
   );
 };

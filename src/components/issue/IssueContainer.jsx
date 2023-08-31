@@ -17,7 +17,7 @@ export default function IssueContainer() {
       setIssues(prevData => {
         const mergedData = [...prevData, ...newData];
         const uniqueData = mergedData.filter(
-          (item, index, self) => index === self.findIndex(t => t.id === item.id), // id는 고유 식별자라고 가정
+          (item, index, self) => index === self.findIndex(t => t.id === item.id),
         );
         return uniqueData;
       });
@@ -35,8 +35,8 @@ export default function IssueContainer() {
   }, [page]);
 
   const loadMore = useCallback(() => {
-    setPage(page => page + 1);
     setIsLoading(true);
+    setPage(page => page + 1);
   }, []);
 
   return (
