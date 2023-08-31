@@ -1,8 +1,9 @@
 import Text from './Text';
+import dateFormat from '../../utils/dateFormat';
 
 const CardItem = ({ issue, handleClickTitle }) => {
   const { number, title, user, created_at, comments } = issue;
-  const userInfo = `작성자: ${user.login}, 작성일: ${created_at}`;
+  const userInfo = `작성자: ${user.login}, 작성일: ${dateFormat(created_at)}`;
 
   return (
     <div className="flex">
