@@ -1,7 +1,7 @@
-import IssueContainer from '../../components/issue/IssueContainer';
+import IssueList from '../../components/issue/IssueList';
 
 const IssuesPage = () => {
-  return <IssueContainer />;
+  return <IssueList />;
 };
 
 export default IssuesPage;

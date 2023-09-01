@@ -1,8 +1,9 @@
 import ReactMarkdown from 'react-markdown';
+import '../../markdown.css';
 
 const IssueDetailContent = ({ body }) => {
   return (
-    <div className="mt-10">
+    <div className="markdown mt-10">
       <ReactMarkdown>{body}</ReactMarkdown>
     </div>
   );
