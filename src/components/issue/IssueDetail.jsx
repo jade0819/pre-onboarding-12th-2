@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getIssueItem } from '../../api/api';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router';
 import Profile from '../ui/Profile';
 import Card from '../ui/Card';
 import CardItem from '../ui/CardItem';
@@ -11,9 +11,7 @@ const IssueDetail = () => {
   const [issue, setIssue] = useState();
   const [error, setError] = useState('');
 
-  const {
-    state: { id },
-  } = useLocation();
+  const { id } = useParams();
 
   const fetchIssues = async () => {
     try {
