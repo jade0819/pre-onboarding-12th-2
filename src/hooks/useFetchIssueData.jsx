@@ -41,10 +41,6 @@ const useFetchIssueData = () => {
     [issue],
   );
 
-  useEffect(() => {
-    fetchIssues();
-  }, [page]);
-
   return {
     issues,
     issue,

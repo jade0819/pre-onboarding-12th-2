@@ -14,7 +14,7 @@ const IssueDetail = () => {
 
   useEffect(() => {
     fetchIssueDetail(id);
-  }, [id]);
+  }, []);
 
   return (
     <>

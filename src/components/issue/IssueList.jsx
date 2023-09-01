@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import useFetchIssueData from '../../hooks/useFetchIssueData';
 import useOnScreen from '../../hooks/useOnScreen';
 import IssueItem from './IssueItem';
@@ -7,19 +7,20 @@ import Loading from '../ui/Loading';
 import LoadingItem from '../ui/LoadingItem';
 
 const IssueList = () => {
-  const { error, issues, setPage, isLoading, isLoadingLoadMore } = useFetchIssueData();
+  const { error, issues, page, setPage, isLoading, isLoadingLoadMore, fetchIssues } =
+    useFetchIssueData();
   const { measureRef, isIntersecting, observer } = useOnScreen();
 
-  const loadMore = useCallback(() => {
-    setPage(page => page + 1);
-  }, []);
+  useEffect(() => {
+    fetchIssues();
+  }, [page]);
 
   useEffect(() => {
     if (isIntersecting) {
-      loadMore();
+      setPage(page => page + 1);
       observer.disconnect();
     }
-  }, [isIntersecting, loadMore]);
+  }, [isIntersecting]);
 
   return (
     <>
