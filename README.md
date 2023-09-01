@@ -16,7 +16,7 @@
 
 ## ✔️ 배포
 
-- `Google Firebase` [🔗Link](https://pre-onboarding-2-17-deploy.web.app/)
+- `Netlify` [🔗Link](https://pre-onboarding-12th-week2.netlify.app/)
 
 <br/>
 <br/>
