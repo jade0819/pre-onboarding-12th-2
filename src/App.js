@@ -1,18 +1,11 @@
-import { BrowserRouter } from 'react-router-dom';
-import { Suspense } from 'react';
-import AppRoutes from './AppRoutes';
 import PageLayout from './layout/PageLayout';
-import Loading from './components/ui/Loading';
+import AppRoutes from './AppRoutes';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <PageLayout>
-        <Suspense fallback={<Loading />}>
-          <AppRoutes />
-        </Suspense>
-      </PageLayout>
-    </BrowserRouter>
+    <PageLayout>
+      <AppRoutes />
+    </PageLayout>
   );
 };
 

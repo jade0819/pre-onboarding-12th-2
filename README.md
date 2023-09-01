@@ -26,13 +26,11 @@
 - 실행을 위해 다음 Node version이 필요합니다.
   [Node.js 18.17.0](https://nodejs.org/ca/blog/release/v18.17.0/)
 
-- 실행 방법 (2가지 중 택 1)
-  > 1. 배포 링크를 통한 접속
-  > 2. ZIP 파일 다운로드 및 압축 풀기 후 코드 에디터로 실행
-
 ```
-$ npm i
-$ npm run start
+git clone https://github.com/jade0819/pre-onboarding-12th-2.git
+cd pre-onboarding-12th-2
+npm install
+npm run start
 ```
 
 <br/>
@@ -89,9 +87,9 @@ $ npm run start
 특정 레파지토리의 이슈 데이터를 가져오는 기능
 
 1. `GitHub REST API`
-2. `GitHub REST API + GitHub Octokit`
+2. `GitHub Octokit`
 
-- Octokit은 GitHub의 REST API와 상호 작용하기 위해 JavaScript를 사용하여 스크립트를 작성하려는 경우 GitHub에서는 Octokit.js SDK를 사용할 것을 권장하고 있으며, Axios를 사용한 비동기 통신 로직보다 조금 더 빠른 성능을 보장할 수 있어서 `GitHub Octokit`을 선택했습니다.
+- Octokit은 GitHub의 REST API와 상호 작용하기 위해 JavaScript를 사용하여 스크립트를 작성하려는 경우 GitHub에서는 Octokit.js SDK를 사용할 것을 권장하고 있으며, REST API를 사용한 비동기 통신보다 조금 더 빠른 성능을 보장할 수 있어서 `GitHub Octokit`을 선택했습니다.
 
 Infinite Scroll 기능
 
@@ -109,8 +107,8 @@ Infinite Scroll 기능
 
 #### [Assignment 1] 이슈 데이터 가져오기
 
-- Github Octokit 라이브러리를 사용
-- XXXXXXXXX 비동기 통신으로 API 로직 Custom Hook으로 구현
+- Github Octokit 라이브러리 사용
+- 비동기 통신 API 호출 로직을 Custom Hook으로 구현해서 코드의 가독성을 높이고, 관심사를 분리함으로써 유지보수에 용의함
 
 #### [Assignment 2] Open 상태인 이슈를, Comment가 가장 많은 순서대로 정렬하여 출력
 
@@ -134,12 +132,11 @@ Infinite Scroll 기능
 
 #### [Assignment 7] 데이터가 요청 중 로딩 화면을 렌더링
 
-- XXXXXXXXX API 호출 로직이 포함된 custom hook을 이용하여 데이터 및 로딩 상태를 관리하고, 상태 값에 따라 로딩 화면 렌더링
+- API 호출 시 로딩 상태를 관리하고 상태값에 따라 로딩화면 렌더링
 
 #### [Assignment 8] 에러 핸들링
 
-- XXXXXXXXX 에러 상태를 관리하는 Custom Hook을 이용하여 에러 발생 시 에러 화면 렌더링
-- 에러 상태값에 따른 에러 페이지 렌더링
+- 에러 상태를 관리하여 에러 발생 시 에러화면 렌더링
 
 <br/>
 <br/>
@@ -151,15 +148,15 @@ Infinite Scroll 기능
 <br/>
 <br/>
 
-## 🐿️ 프로젝트 성능 진단
+## 🐿️ 프로젝트 결과 화면
 
 ### 이슈 목록 페이지
 
-![image](https://github.com/Akows/wanted-pre-onboarding-12th-team17-week2/assets/54127322/49d36e2d-793d-4837-8ddf-71c8cdd70d48)
+![image](https://github.com/jade0819/pre-onboarding-12th-2/assets/88275787/d26413a4-3914-4a86-adde-dabd8e669c63)
 
 ### 이슈 상세 페이지
 
-![image](https://github.com/Akows/wanted-pre-onboarding-12th-team17-week2/assets/54127322/31a4d72b-6c89-4148-b625-4809c2fea5e8)
+![image](https://github.com/jade0819/pre-onboarding-12th-2/assets/88275787/a2d3e873-50b8-41d1-ac30-2c245d5b689b)
 
 <br/>
 <br/>
@@ -175,6 +172,8 @@ src/
 │   │   ├── IssueDetailContent.jsx
 │   │   ├── IssueItem.jsx
 │   │   └── IssueList.jsx
+│   ├── scroll/
+│   │   ├── ScrollToTop.jsx
 │   └── UI/
 │       ├── Card.jsx
 │       ├── CardItem.jsx
@@ -186,20 +185,22 @@ src/
 ├── constanjs/
 │   └── issuesData.js
 ├── hooks/
+│   │   useFetchIssuData.jsx
 │   └── useOnScreen.jsx
 ├── laout/
 │   ├── Header.jsx
 │   └── PageLayout.jsx
 ├── pages/
 │   ├── issue/
-│   │   ├── IssueDetailPage
-│   │   └── IssuesPage
+│   │   ├── IssueDetailPage.jsx
+│   │   └── IssuesPage.jsx
 │   └── NotFound/
-│       └── NotFoundPage
+│       └── NotFoundPage.js
 ├── utils/
+│   ├── objUniqueCheck.js
 │   └── dateFormat
 ├── App.jsx
 ├── index.css
 ├── index.jsx
-└── routes.jsx
+└── AppRoutes.jsx
 ```

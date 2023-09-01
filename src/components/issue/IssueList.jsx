@@ -1,55 +1,32 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import useFetchIssueData from '../../hooks/useFetchIssueData';
 import useOnScreen from '../../hooks/useOnScreen';
 import IssueItem from './IssueItem';
-import LoadingItem from '../ui/LoadingItem';
-import { getIssues } from '../../api/api';
 import Error from '../ui/Error';
+import Loading from '../ui/Loading';
+import LoadingItem from '../ui/LoadingItem';
 
 const IssueList = () => {
-  const [issues, setIssues] = useState([]);
-  const [page, setPage] = useState(1);
-  const [error, setError] = useState('');
-  const [isLoadingLoadMore, setIsLoadingLoadMore] = useState(false);
-
-  const fetchIssues = async () => {
-    try {
-      const newData = await getIssues(page);
-
-      setIssues(prevData => {
-        const mergedData = [...prevData, ...newData];
-        const uniqueData = mergedData.filter(
-          (item, index, self) => index === self.findIndex(t => t.id === item.id),
-        );
-        return uniqueData;
-      });
-    } catch (error) {
-      setError(error);
-    }
-
-    setIsLoadingLoadMore(false);
-  };
+  const { error, issues, page, setPage, isLoading, isLoadingLoadMore, fetchIssues } =
+    useFetchIssueData();
+  const { measureRef, isIntersecting, observer } = useOnScreen();
 
   useEffect(() => {
     fetchIssues();
   }, [page]);
 
-  const loadMore = useCallback(() => {
-    setIsLoadingLoadMore(true);
-    setPage(page => page + 1);
-  }, []);
-  const { measureRef, isIntersecting, observer } = useOnScreen();
-
   useEffect(() => {
     if (isIntersecting) {
-      loadMore();
+      setPage(page => page + 1);
       observer.disconnect();
     }
-  }, [isIntersecting, loadMore]);
+  }, [isIntersecting]);
 
   return (
     <>
       {error && <Error error={error} type={'list'} />}
-      {!error && (
+      {isLoading && <Loading />}
+      {!isLoading && !error && (
         <ul>
           {issues.length > 0 &&
             issues?.map((issue, index) => {

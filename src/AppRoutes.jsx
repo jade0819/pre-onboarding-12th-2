@@ -1,9 +1,7 @@
-import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
-const IssuesPage = lazy(() => import('./pages/issue/IssuesPage'));
-const IssueDetailPage = lazy(() => import('./pages/issue/IssueDetailPage'));
-const NotFoundPage = lazy(() => import('./pages/notFound/NotFoundPage'));
+import NotFoundPage from './pages/notFound/NotFoundPage';
+import IssueDetailPage from './pages/issue/IssueDetailPage';
+import IssuesPage from './pages/issue/IssuesPage';
 
 const AppRoute = () => {
   return (
